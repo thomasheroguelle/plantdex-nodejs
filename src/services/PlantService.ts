@@ -26,5 +26,19 @@ class PlantService {
       ]
     );
   }
+
+  async updatePlant(plantData: any): Promise<Plant | null> {
+    return AppDataSource.query(
+      "UPDATE plant set nom = ?, soleil = ?, arrosage = ?, categorie = ?, image = ?   WHERE id = ?",
+      [
+        plantData.nom,
+        plantData.soleil,
+        plantData.arrosage,
+        plantData.categorie,
+        plantData.image,
+        plantData.id,
+      ]
+    );
+  }
 }
 export default PlantService;
