@@ -7,4 +7,7 @@ const plantController = new PlantController();
 plantRouter.get("/", (req, res) => {
   plantController.getAll(req, res);
 });
+plantRouter.get("/:id", (req, res) => {
+  plantController.getById(req, res); 
+});
 export default plantRouter;
