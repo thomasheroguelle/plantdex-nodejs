@@ -9,5 +9,15 @@ class PlantController {
     const plants: Plant[] = await this.plantService.getPlants(); // Ajoutez le type de retour Plant[]
     res.send({ status: "OK", data: plants });
   }
+
+  async getById(req: Request, res: Response) {
+    const id: number = parseInt(req.params.id);
+    const plant: Plant | null = await this.plantService.getPlantById(id);
+    if (plant) {
+      res.send({ status: "OK", data: plant });
+    } else {
+      res.status(400).send({ status: "Not Found", message: "Plant not found" });
+    }
+  }
 }
 export default PlantController;
