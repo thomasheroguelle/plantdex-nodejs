@@ -1,7 +1,7 @@
 import AppDataSource from "../data-source";
 import express from "express";
 import cors from "cors";
-
+import plantRouter from "./routes/PlantRoutes"
 
 AppDataSource.initialize().then(() => {
   const app = express();
@@ -16,7 +16,7 @@ AppDataSource.initialize().then(() => {
     res.send();
   })
 
-  // app.use("/api/books", bookRouter) endpoint exemple
+  app.use("/api/plants", plantRouter) 
 
   app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
