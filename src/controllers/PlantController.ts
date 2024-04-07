@@ -6,7 +6,7 @@ class PlantController {
   private plantService = new PlantService();
 
   async getAll(req: Request, res: Response) {
-    const plants: Plant[] = await this.plantService.getPlants(); // Ajoutez le type de retour Plant[]
+    const plants: Plant[] = await this.plantService.getPlants(); 
     res.send({ status: "OK", data: plants });
   }
 
@@ -24,6 +24,18 @@ class PlantController {
     const plantData = req.body;
     const newPlant = await this.plantService.createPlant(plantData);
     res.status(201).json(newPlant);
+  }
+
+  async updatePlant(req: Request, res: Response) {
+    const { id } = req.params;
+    const plantData = req.body;
+    plantData.id = parseInt(id);
+    const updatedPlant = await this.plantService.updatePlant(plantData);
+    if (updatedPlant) {
+      res.status(200).json({ status: "OK", data: updatedPlant });
+    } else {
+      res.status(404).json({ status: "Not Found", message: "Plant not found" });
+    }
   }
 }
 export default PlantController;
