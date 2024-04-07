@@ -19,5 +19,11 @@ class PlantController {
       res.status(400).send({ status: "Not Found", message: "Plant not found" });
     }
   }
+
+  async addPlant(req: Request, res: Response) {
+    const plantData = req.body;
+    const newPlant = await this.plantService.createPlant(plantData);
+    res.status(201).json(newPlant);
+  }
 }
 export default PlantController;
