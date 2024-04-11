@@ -40,5 +40,9 @@ class PlantService {
       ]
     );
   }
+
+  async deletePlant(id: number): Promise<void> {
+    await AppDataSource.query("DELETE FROM plant WHERE id = ?", [id]);
+  }
 }
 export default PlantService;
