@@ -3,15 +3,15 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Plant {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
   @Column()
-  nom!: string;
+  nom: string;
   @Column()
-  soleil!: string;
+  soleil: string;
   @Column()
-  arrosage!: number;
+  arrosage: number;
   @Column()
-  categorie!: string;
+  categorie: string;
   @Column()
-  image!: string;
+  image: string;
 }
