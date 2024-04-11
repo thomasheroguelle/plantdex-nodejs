@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { UserService } from "../services/UserService";
 
 export class UserController {
@@ -16,6 +17,18 @@ export class UserController {
       res.status(400).json({
         message: "User already exists",
       });
+    }
+  }
+
+  async login(req: Request, res: Response) {
+    const email = req.body.email;
+    const password = req.body.password;
+    const token = await this.userService.login(email, password);
+
+    if (token) {
+      res.status(200).json({ token: token });
+    } else {
+      res.status(400).json({ message: "Invalid credentials" });
     }
   }
 }
