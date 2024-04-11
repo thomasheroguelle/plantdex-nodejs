@@ -6,7 +6,7 @@ class PlantController {
   private plantService = new PlantService();
 
   async getAll(req: Request, res: Response) {
-    const plants: Plant[] = await this.plantService.getPlants(); 
+    const plants: Plant[] = await this.plantService.getPlants();
     res.send({ status: "OK", data: plants });
   }
 
@@ -36,6 +36,14 @@ class PlantController {
     } else {
       res.status(404).json({ status: "Not Found", message: "Plant not found" });
     }
+  }
+
+  async deletePlant(req: Request, res: Response) {
+    const id: number = parseInt(req.params.id);
+    await this.plantService.deletePlant(id);
+    res
+      .status(200)
+      .json({ status: "OK", message: "Plant deleted successfully" });
   }
 }
 export default PlantController;
